@@ -13,12 +13,12 @@ export const UserStorage = ({ children }) => {
 
   const userLogout = React.useCallback(
     async function () {
+      navigate("/login");
       setData(null);
       setError(null);
       setLoading(false);
       setLogin(false);
       window.localStorage.removeItem("token");
-      navigate("/login");
     },
     [navigate]
   );
@@ -37,7 +37,7 @@ export const UserStorage = ({ children }) => {
       setLoading(true);
       const { url, options } = TOKEN_POST({ username, password });
       const tokenRes = await fetch(url, options);
-      if (!tokenRes.ok) throw new Error(`Error: usuário ou senha incorretos`);
+      if (!tokenRes.ok) throw new Error("Error: usuário ou senha incorretos");
       const { token } = await tokenRes.json();
       window.localStorage.setItem("token", token);
       await getUser(token);

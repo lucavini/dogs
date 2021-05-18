@@ -15,10 +15,15 @@ const Header = () => {
         </Link>
 
         {data ? (
-          <Link className={styles.login} to="/conta">
-            {data.nome}
-            <button onClick={userLogout}>Sair</button>
-          </Link>
+          <div>
+            <Link className={styles.login} to="/conta">
+              {data.nome}
+            </Link>
+
+            <Link to="/login">
+              <button onClick={userLogout}>Sair</button>
+            </Link>
+          </div>
         ) : (
           <Link className={styles.login} to="/login">
             Login / Criar
