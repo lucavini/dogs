@@ -13,22 +13,28 @@ const UserHeaderNav = () => {
   const { userLogout } = React.useContext(UserContext);
   const [mobileMenu, setMobileMenu] = React.useState(mobile);
 
-  const {pathname} = useLocation();
-  React.useEffect(()=>{
-    setMobileMenu(false)
-  },[pathname]);
+  const { pathname } = useLocation();
+  React.useEffect(() => {
+    setMobileMenu(false);
+  }, [pathname]);
 
   return (
     <React.Fragment>
       {mobile && (
         <button
           aria-label="Menu"
-          className={`${styles.mobileButton} ${mobileMenu && styles.mobileButtonActive}`}
+          className={`${styles.mobileButton} ${
+            mobileMenu && styles.mobileButtonActive
+          }`}
           onClick={() => setMobileMenu(!mobileMenu)}
         ></button>
       )}
 
-      <nav className={`${mobile ? styles.navMobile : styles.nav} ${mobileMenu && styles.navMobileActive}`}>
+      <nav
+        className={`${mobile ? styles.navMobile : styles.nav} ${
+          mobileMenu && styles.navMobileActive
+        }`}
+      >
         <NavLink to="/conta" end activeClassName={styles.active}>
           <MinhasFotos />
           {mobile && "Minhas Fotos"}
