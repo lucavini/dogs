@@ -13,7 +13,7 @@ const LoginCreate = () => {
   const email = useForm("email");
   const password = useForm();
   const { userLogin } = React.useContext(UserContext);
-  const { loading, error, request } = useFetch();
+  const { loading, error, setError, request } = useFetch();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -25,7 +25,11 @@ const LoginCreate = () => {
     });
 
     const { response } = await request(url, options);
-    if (response.ok) userLogin(username.value, password.value);
+    if (response.ok){
+      userLogin(username.value, password.value);
+    }else{
+      setError("Erro: Usuário ou Email ja cadastrados");
+    }
   }
 
   return (
